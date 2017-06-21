@@ -13,7 +13,7 @@ when compared to latex.
 Install
 =======
 
-pip2 install lax
+    pip2 install lax
 
 That is all.
 
@@ -86,4 +86,5 @@ A really convoluted example:
 
     [tau@sigma ~]$ lax -c 'x * (x-3) (f(x-3) - 2) (x ** (x-3/(x-2)))'
     x\cdot \left(x-3\right)\left(f\left(x-3\right)-2\right)\left({x}^{\left(x-\frac{3}{x-2}\right)}\right)
+
 

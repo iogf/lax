@@ -30,4 +30,9 @@ git checkout master
 git merge development
 git push
 git checkout development
+##############################################################################
+
+cd ~/projects/lax-code
+python setup.py sdist register upload
+rm -fr dist
 
