@@ -4,16 +4,19 @@ FMT0 = lambda data: data
 FMT1 = lambda data: '\\left(%s\\right)' % data
 
 class Function(object):
+    def __call__(self, exp):
+        return Block(self, exp)
+
     def __init__(self, name, exp):
         self.name = name
         self.exp  = exp
 
     def __str__(self, op=None):
-        return '%s(%s)' % (self.name, self.exp.__str__(self))
+        return '%s\\left(%s\\right)' % (self.name, self.exp.__str__(self))
 
 class Chk(object):
     def __call__(self, exp):
-        return Function(self.val, exp)
+        return Function(self, exp)
 
     def __init__(self, val):
         self.val = val
@@ -61,7 +64,26 @@ class Num(Chk):
     def __init__(self, val):
         Chk.__init__(self, val)
 
+class Block(object):
+    def __call__(self, exp):
+        return Block(self, exp) 
+
+    def __init__(self, exp0, exp1):
+        self.exp0 = exp0
+        self.exp1  = exp1
+
+    def __str__(self, op=None):
+        tmp = '\\left(%s\\right)' 
+        lhs = self.exp0.__str__(self)
+        lhs = tmp % lhs if not isinstance(self.exp0, Block) else lhs
+        rhs = self.exp1.__str__(self)
+        rhs = tmp % rhs if not isinstance(self.exp1, Block) else rhs
+        return '%s%s' % (lhs, rhs)
+
 class Op(Chk):
+    def __call__(self, exp):
+        return Block(self, exp)
+
     def __init__(self, lhs, rhs, arg_map, op_map, default_arg_map, default_op_map):
         self.lhs              = lhs
         self.rhs              = rhs
@@ -212,6 +234,7 @@ class Exp(Op):
 
         Op.__init__(self, lhs, rhs, EXP_ARG_MAP, EXP_OP_MAP, FMT0, 
                     DEFAULT_EXP_OP_MAP)
+
 
 
 

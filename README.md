@@ -62,3 +62,24 @@ With functions:
     \sqrt[xyz]{alpha(x-2)}
     [tau@sigma ~]$ 
 
+Notice that if you want to omit multiplication sign you can do:
+
+    [tau@sigma ~]$ lax -c '(x-3)(x+y)'
+    \left(x-3\right)\left(x+y\right)
+
+    [tau@sigma ~]$ lax -c '(x-3)(x+y) * 2'
+    \left(x-3\right)\left(x+y\right)\cdot 2
+
+    [tau@sigma ~]$ lax -c '(x-3)(x+y)(x-2)(x ** (x-y))'
+    \left(x-3\right)\left(x+y\right)\left(x-2\right)\left({x}^{\left(x-y\right)}\right)
+
+    [tau@sigma ~]$ lax -c 'x * (x-2)(x/(x-5))((x-3)/(x**(2-x)))'
+    x\cdot \left(x-2\right)\left(\frac{x}{x-5}\right)\left(\frac{x-3}{{x}^{\left(2-x\right)}}\right)
+
+When omiting multiplication sign with functions:
+
+
+    [tau@sigma ~]$ lax -c 'x * f(x-3)((x-2)/(x-(y^2)))'
+    x\cdot \left(f\left(x-3\right)\right)\left(\frac{x-2}{x-\sqrt[y]{2}}\right)
+
+
