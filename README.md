@@ -53,3 +53,12 @@ With exponents:
     [tau@sigma ~]$ lax -c '2 ** (x ** 4)'
     {2}^{\left({x}^{4}\right)}
 
+With functions:
+
+    [tau@sigma ~]$ lax -c '2 * f((x-2) * 3)/(2-xy)'
+    \frac{2\cdot f(\left(x-2\right)\cdot 3)}{2-xy}
+
+    [tau@sigma ~]$ lax -c 'xyz^(alpha(x-2))'
+    \sqrt[xyz]{alpha(x-2)}
+    [tau@sigma ~]$ 
+

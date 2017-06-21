@@ -3,8 +3,18 @@
 FMT0 = lambda data: data
 FMT1 = lambda data: '\\left(%s\\right)' % data
 
+class Function(object):
+    def __init__(self, name, exp):
+        self.name = name
+        self.exp  = exp
+
+    def __str__(self, op=None):
+        return '%s(%s)' % (self.name, self.exp.__str__(self))
 
 class Chk(object):
+    def __call__(self, exp):
+        return Function(self.val, exp)
+
     def __init__(self, val):
         self.val = val
 
