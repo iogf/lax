@@ -82,4 +82,8 @@ When omiting multiplication sign with functions:
     [tau@sigma ~]$ lax -c 'x * f(x-3)((x-2)/(x-(y^2)))'
     x\cdot \left(f\left(x-3\right)\right)\left(\frac{x-2}{x-\sqrt[y]{2}}\right)
 
+A really convoluted example:
+
+    [tau@sigma ~]$ lax -c 'x * (x-3) (f(x-3) - 2) (x ** (x-3/(x-2)))'
+    x\cdot \left(x-3\right)\left(f\left(x-3\right)-2\right)\left({x}^{\left(x-\frac{3}{x-2}\right)}\right)
 
