@@ -13,12 +13,15 @@ when compared to latex.
 Install
 =======
 
-python setup.py install
+pip2 install lax
 
 That is all.
 
 Usage
 =====
+
+When using multiplication, the usual notation for 
+x2 is x * 2 but 2 * x is usually written as 2x.
 
     tau@eletron:~$ lax -c 'x * 2'    
     x\cdot2
@@ -26,41 +29,29 @@ Usage
     2x
     tau@eletron:~$ 
     
-The usual notation for x2 is x * 2 but 2 * x is usually written as 2x.
 
-    tau@eletron:~$ lax -c ' x * 3 * 3 * x'
-    x\cdot3\cdot3x
-    tau@eletron:~$ 
+    tau@eletron:~$ lax -c ' x * 3 * 3 * y'
+    x\cdot3\cdot3y
 
-With exponents.
+However the usual way to write 3 * 3 * x  * y:.
 
-    tau@eletron:~$ lax -c '((x-1)/(x-2)) * x'    
-    \frac{x-1}{x-2}x
+  [tau@sigma ~]$ lax -c '3 * 3 * x  * y'
+  3\cdot3xy
+  
+The python operator ^ is used for roots. 
 
-    tau@eletron:~$ lax -c '(x-1)/(x-2) * x'
-    \frac{x-1}{x-2}x
+  [tau@sigma ~]$ lax -c '((x-1) ^ ((x-1)/(x+2)))/(y-z+k-e+w)'
+  \frac{\sqrt[\left(x-1\right)]{\left(\frac{x-1}{x+2}\right)}}{y-z+k-e+w}
 
-    tau@eletron:~$ lax -c '(x-1)/(x-2) * x'
-    \frac{x-1}{x-2}x
+Using exponents:
 
-    tau@eletron:~$ lax -c 'x/(x-2) * (x-1)'
-    \frac{x}{x-2}\left(x-1\right)
+  [tau@sigma ~]$ lax -c '2 ** (x - 2)'
+  2^{\left(x-2\right)}
+  
+With roots:
 
-    tau@eletron:~$ lax -c '(x-1)*x/(x-2)'
-    \frac{\left(x-1\right)x}{x-2}
+  [tau@sigma ~]$ lax -c ' 2 ^ x - 2 * 2'
+  \sqrt[2]{\left(x-2\cdot2\right)}
+  
 
-    tau@eletron:~$ lax -c '(x*(x-1))/(x-2)'
-    \frac{x\left(x-1\right)}{x-2}
-
-    tau@eletron:~$ lax -c '((x-1) ** ((x-1)/(x+2)))/(y-z+k-e+w)'
-    \frac{\sqrt[\left(\frac{x-1}{x+2}\right)]{\left(x-1\right)}}{y-z+k-e+w}
-
-    tau@eletron:~$     
-
-
-I'll implement other functionalities soon.
-
-
-
-
-
+  

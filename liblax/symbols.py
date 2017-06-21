@@ -1,12 +1,6 @@
 from string import ascii_lowercase, ascii_uppercase
+from liblax.core import *
 
-ENV = {}
-
-exec('from liblax.core import *', ENV)
 for ind in (ascii_lowercase + ascii_uppercase):
-    exec('%s = Chk("%s")' % (ind, ind), ENV)
-
-
-
-
+    exec('%s = Chk("%s")' % (ind, ind))
 

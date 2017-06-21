@@ -14,7 +14,7 @@ git push
 # it installs lax.
 cd ~/projects/lax-code
 sudo bash -i
-python setup.py install
+python2 setup.py install
 rm -fr build
 exit
 ##############################################################################
@@ -23,5 +23,6 @@ cd /home/tau/projects/lax-code/
 git branch -a
 git checkout -b development
 git push --set-upstream origin development
+
 
 
