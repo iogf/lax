@@ -2,7 +2,6 @@
 
 FMT0 = lambda data: data
 FMT1 = lambda data: '\\left(%s\\right)' % data
-FMT2 = lambda rhs, lhs: '%s\cdot%s' % (rhs, lhs)
 
 
 class Chk(object):
@@ -37,10 +36,10 @@ class Chk(object):
         return Div(other, self)
 
     def __pow__(self, other):
-        return Exp(self, other)
+        return Exp(other, self)
 
     def __rpow__(self, other):
-        return Exp(other, self)
+        return Exp(self, other)
 
     def __rxor__(self, other):
         return Pow(self, other)
@@ -115,6 +114,7 @@ class Sub(Op):
 
 class Mul(Op):
     def __init__(self, lhs, rhs):
+
         MUL_ARG_MAP = {
                 Chk: FMT0, 
                 Div: FMT0, 
@@ -124,18 +124,12 @@ class Mul(Op):
                 Pow: FMT1,
                 Exp: FMT1,
               }
-
+        
         MUL_OP_MAP = {
-            (Num, Num): FMT2,
-            (Chk, Num): FMT2,
-            (Sum, Num): FMT2,
-            (Sub, Num): FMT2,
-            (Div, Num): FMT2,
-            (Mul, Num): FMT2,
-            (Pow, Num): FMT2
+
         }
 
-        DEFAULT_MUL_OP_MAP = lambda rhs, lhs: '%s%s' % (rhs, lhs)
+        DEFAULT_MUL_OP_MAP = lambda rhs, lhs: '%s\cdot %s' % (rhs, lhs)
 
         Op.__init__(self, lhs, rhs, MUL_ARG_MAP, MUL_OP_MAP, FMT0, 
                     DEFAULT_MUL_OP_MAP)
@@ -174,7 +168,7 @@ class Pow(Op):
                 Sub: FMT0,
                 Mul: FMT0,
                 Pow: FMT0,
-                Exp: FMT0,
+                Exp: FMT1,
               }
 
         POW_OP_MAP = {
@@ -189,23 +183,22 @@ class Pow(Op):
 
 class Exp(Op):
     def __init__(self, lhs, rhs):
+        DEFAULT_EXP_OP_MAP = lambda lhs, rhs: '{%s}^{%s}' % (rhs, lhs)
+
         EXP_ARG_MAP = {
                 Chk: FMT0,
                 Div: FMT0,
                 Sum: FMT0,
                 Sub: FMT0,
                 Mul: FMT0,
-                Exp: FMT0,
-                Exp: FMT0,
+                Pow: FMT0,
+                Exp: FMT1,
 
               }
 
         EXP_OP_MAP = {
 
         }
-
-
-        DEFAULT_EXP_OP_MAP = lambda lhs, rhs: '%s^{%s}' % (rhs, lhs)
 
         Op.__init__(self, lhs, rhs, EXP_ARG_MAP, EXP_OP_MAP, FMT0, 
                     DEFAULT_EXP_OP_MAP)

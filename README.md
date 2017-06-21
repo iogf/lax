@@ -20,38 +20,36 @@ That is all.
 Usage
 =====
 
-When using multiplication, the usual notation for 
-x2 is x * 2 but 2 * x is usually written as 2x.
+With basic operations:
 
-    tau@eletron:~$ lax -c 'x * 2'    
-    x\cdot2
-    tau@eletron:~$ lax -c '2 * x'    
-    2x
-    tau@eletron:~$ 
-    
+    [tau@sigma ~]$ lax -c 'x * (2 - y) * yz'
+    x\cdot \left(2-y\right)\cdot yz
+    [tau@sigma ~]$ 
+      
+With roots and fractions:
 
-    tau@eletron:~$ lax -c ' x * 3 * 3 * y'
-    x\cdot3\cdot3y
+    [tau@sigma ~]$ lax -c '2 ^ x/(2 - y)'
+    \sqrt[2]{\left(\frac{x}{2-y}\right)}
+        
 
-However the usual way to write 3 * 3 * x  * y:.
+Notice that to use the root you use ^:
 
-  [tau@sigma ~]$ lax -c '3 * 3 * x  * y'
-  3\cdot3xy
-  
-The python operator ^ is used for roots. 
+    [tau@sigma ~]$ lax -c '3/2 ^ x * (3-yz)'
+    \sqrt[\left(\frac{3}{2}\right)]{\left(x\cdot \left(3-yz\right)\right)}
 
-  [tau@sigma ~]$ lax -c '((x-1) ^ ((x-1)/(x+2)))/(y-z+k-e+w)'
-  \frac{\sqrt[\left(x-1\right)]{\left(\frac{x-1}{x+2}\right)}}{y-z+k-e+w}
+    [tau@sigma ~]$ lax -c '2 ^ (3 ^ (x - 1))'
+    \sqrt[2]{\sqrt[3]{\left(x-1\right)}}
 
-Using exponents:
+Due to the precedence of ^ in python the / * + - are evaluated first.
 
-  [tau@sigma ~]$ lax -c '2 ** (x - 2)'
-  2^{\left(x-2\right)}
-  
-With roots:
+With exponents:
 
-  [tau@sigma ~]$ lax -c ' 2 ^ x - 2 * 2'
-  \sqrt[2]{\left(x-2\cdot2\right)}
-  
+    [tau@sigma ~]$ lax -c '2 ** (x - 2)'
+    \left(x-2\right)^{2}
 
-  
+    [tau@sigma ~]$ lax -c '(2 ** x) ** 4'
+    {\left({2}^{x}\right)}^{4}
+
+    [tau@sigma ~]$ lax -c '2 ** (x ** 4)'
+    {2}^{\left({x}^{4}\right)}
+
