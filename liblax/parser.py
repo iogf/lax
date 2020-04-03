@@ -1,6 +1,6 @@
 from tokenize import generate_tokens as split
 from tokenize import NUMBER, NAME, STRING, OP, untokenize
-from StringIO import StringIO
+from io import StringIO
 from liblax.core import *
 
 def build(data):

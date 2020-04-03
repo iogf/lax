@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name="lax",
-      version="0.3",
+      version="1.0.0",
       packages=["liblax"],
       scripts=['lax'],
       author="Iury O. G. Figueiredo",

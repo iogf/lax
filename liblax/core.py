@@ -3,7 +3,7 @@
 FMT0 = lambda data: data
 FMT1 = lambda data: '\\left(%s\\right)' % data
 
-class Function(object):
+class Function:
     def __call__(self, exp):
         return Block(self, exp)
 
@@ -14,7 +14,7 @@ class Function(object):
     def __str__(self, op=None):
         return '%s\\left(%s\\right)' % (self.name, self.exp.__str__(self))
 
-class Chk(object):
+class Chk:
     def __call__(self, exp):
         return Function(self, exp)
 
@@ -42,10 +42,10 @@ class Chk(object):
     def __rmul__(self, other):
         return Mul(other, self)
 
-    def __div__(self, other):
+    def __truediv__(self, other):
         return Div(self, other)
 
-    def __rdiv__(self, other):
+    def __rtruediv__(self, other):
         return Div(other, self)
 
     def __pow__(self, other):
@@ -64,7 +64,7 @@ class Num(Chk):
     def __init__(self, val):
         Chk.__init__(self, val)
 
-class Block(object):
+class Block:
     def __call__(self, exp):
         return Block(self, exp) 
 

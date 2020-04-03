@@ -13,7 +13,9 @@ when compared to latex.
 Install
 =======
 
-    pip2 install lax
+Works on python3+ only
+
+    pip install lax
 
 That is all.
 

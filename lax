@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parser.add_option("-c", "--code", action='store', dest="code", help="Example: lax - c 'x ** 2 - 1'")
     (opt, args) = parser.parse_args()
     
-    print run(opt.code)
+    print(run(opt.code))
     
 
 
